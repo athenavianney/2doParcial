@@ -103,4 +103,6 @@ int cola::sacar(){
 
 int cola::cuanto(){
     return cuantos;
-}
+
+
+
