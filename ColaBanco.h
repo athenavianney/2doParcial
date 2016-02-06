@@ -3,7 +3,7 @@
 
  /*
 Name: Cola.cpp
-Author: Athena Vianney Núñez Molina
+Author: Athena Vianney Nï¿½ï¿½ez Molina
 Date: Febrero 4, 2016
 Description:
 */
@@ -11,49 +11,44 @@ Description:
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
-#define VACIO 999999
 
 using namespace std;
 
 struct caja{
-    int valor;
+    int valor, llegada, cajera;
     caja *siguiente;
 };
 
 class cola{
-    int cuantos;
+    int clientes;
     caja *principio, *finalito;
 public:
     cola();
     ~cola();
-    void agregar(int);
+    void agregar(int, int);
     void pintar();
     int sacar();
-    int cuanto();
+    int numClientes();
 };
 
 int main(){
-    cola A;
-    A.agregar(10);
-    A.agregar(20);
-    A.agregar(16);
-    A.pintar();
-    A.sacar();
+    
 
     system("pause");
     return 0;
 }
 
 cola::cola(){
-    cuantos = 0;
+    clientes = 0;
     principio = NULL;
     finalito = NULL;
 }
 
-void cola::agregar(int a){
+void cola::agregar(int llegada, int cajera){
     caja *p;
     p = (caja*)malloc(sizeof(caja));
-    p->valor = a;
+    p->llegada = llegada;
+    p->cajera = cajera;
     if(!principio){
         p->siguiente = NULL;
         principio = p;
@@ -63,7 +58,7 @@ void cola::agregar(int a){
         finalito->siguiente = p;
         finalito = p;
     }
-    cuantos++;
+    clientes++;
 }
 
 cola::~cola(){
@@ -74,7 +69,7 @@ cola::~cola(){
         free(p);
     }
     finalito = NULL;
-    cuantos = 0;
+    clientes = 0;
 }
 
 void cola::pintar(){
@@ -107,6 +102,5 @@ int cola::sacar(){
 int cola::cuanto(){
     return cuantos;
 }
-
 
 #endif // COLABANCO_H_INCLUDED
